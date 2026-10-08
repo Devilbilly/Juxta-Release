@@ -97,7 +97,11 @@ plain `stop` also stops workers. The watchdog can restart a stopped daemon: use
    Juxta performs final gates before merging; a failing gate prevents the merge.
 
 For public static web targets, opt in with `"preview": {"kind": "pages", "root": "."}`
-in your config. Merge setup's preview workflow PR and select GitHub Actions as the
+in your config. Proposing the preview workflow needs a `gh` login with the `workflow` scope.
+Use `gh auth refresh -h github.com -s workflow` for the proposal only. This scope lets
+anything using that login run code in the repository's GitHub Actions. After the proposal,
+remove it with `gh auth refresh -h github.com -r workflow`.
+Merge setup's preview workflow PR and select GitHub Actions as the
 repository's Pages Source. The worker's Review line then links to a browser preview
 of the PR, with its PR number and commit banner. Check that result before signing off.
 Private repositories and backend applications do not have this browser preview.
